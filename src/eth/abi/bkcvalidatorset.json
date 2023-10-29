@@ -1,0 +1,209 @@
+[
+  {
+    "type": "constructor",
+    "inputs": [
+      {
+        "type": "address",
+        "name": "stakeManagerStorage_",
+        "internalType": "address"
+      },
+      {
+        "type": "uint256",
+        "name": "initialSpanBlock_",
+        "internalType": "uint256"
+      },
+      { "type": "bytes", "name": "initialVbytes_", "internalType": "bytes" }
+    ]
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "outputs": [{ "type": "uint256", "name": "", "internalType": "uint256" }],
+    "name": "SPAN",
+    "inputs": []
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "outputs": [{ "type": "uint256", "name": "", "internalType": "uint256" }],
+    "name": "calculateTransitionSpanCommitmentBlock",
+    "inputs": []
+  },
+  {
+    "type": "function",
+    "stateMutability": "nonpayable",
+    "outputs": [],
+    "name": "commitSpan",
+    "inputs": [
+      { "type": "bytes", "name": "validatorBytes_", "internalType": "bytes" }
+    ]
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "outputs": [{ "type": "uint256", "name": "", "internalType": "uint256" }],
+    "name": "currentSpanNumber",
+    "inputs": []
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "outputs": [{ "type": "uint256", "name": "", "internalType": "uint256" }],
+    "name": "getCommitmentBlock",
+    "inputs": [
+      { "type": "uint256", "name": "number_", "internalType": "uint256" }
+    ]
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "outputs": [
+      {
+        "type": "tuple[]",
+        "name": "",
+        "internalType": "struct MinimalValidator[]",
+        "components": [{ "type": "address" }, { "type": "uint256" }]
+      }
+    ],
+    "name": "getEligibleValidators",
+    "inputs": []
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "outputs": [{ "type": "address", "name": "", "internalType": "address" }],
+    "name": "getOfficialPool",
+    "inputs": []
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "outputs": [{ "type": "address", "name": "", "internalType": "address" }],
+    "name": "getSlashManager",
+    "inputs": []
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "outputs": [{ "type": "uint256", "name": "", "internalType": "uint256" }],
+    "name": "getSpanByBlock",
+    "inputs": [
+      { "type": "uint256", "name": "number_", "internalType": "uint256" }
+    ]
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "outputs": [
+      { "type": "uint256", "name": "startBlock", "internalType": "uint256" },
+      { "type": "uint256", "name": "endBlock", "internalType": "uint256" }
+    ],
+    "name": "getSpanRange",
+    "inputs": [
+      { "type": "uint256", "name": "number_", "internalType": "uint256" }
+    ]
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "outputs": [{ "type": "address", "name": "", "internalType": "address" }],
+    "name": "getStakeManager",
+    "inputs": []
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "outputs": [
+      { "type": "address[]", "name": "", "internalType": "address[]" },
+      { "type": "uint256[]", "name": "", "internalType": "uint256[]" },
+      { "type": "address[3]", "name": "", "internalType": "address[3]" }
+    ],
+    "name": "getValidators",
+    "inputs": [
+      { "type": "uint256", "name": "number_", "internalType": "uint256" }
+    ]
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "outputs": [{ "type": "uint256", "name": "", "internalType": "uint256" }],
+    "name": "initialSpanBlock",
+    "inputs": []
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "outputs": [{ "type": "bool", "name": "", "internalType": "bool" }],
+    "name": "isCurrentValidator",
+    "inputs": [
+      { "type": "address", "name": "signer_", "internalType": "address" }
+    ]
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "outputs": [{ "type": "bool", "name": "", "internalType": "bool" }],
+    "name": "isValidator",
+    "inputs": [
+      { "type": "uint256", "name": "span_", "internalType": "uint256" },
+      { "type": "address", "name": "signer_", "internalType": "address" }
+    ]
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "outputs": [
+      { "type": "uint256", "name": "number", "internalType": "uint256" },
+      { "type": "uint256", "name": "startBlock", "internalType": "uint256" },
+      { "type": "uint256", "name": "endBlock", "internalType": "uint256" }
+    ],
+    "name": "spans",
+    "inputs": [{ "type": "uint256", "name": "", "internalType": "uint256" }]
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "outputs": [{ "type": "uint256", "name": "", "internalType": "uint256" }],
+    "name": "stableSpanBlock",
+    "inputs": []
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "outputs": [
+      {
+        "type": "address",
+        "name": "",
+        "internalType": "contract IStakeManagerStorage"
+      }
+    ],
+    "name": "stakeManagerStorage",
+    "inputs": []
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "outputs": [{ "type": "bytes", "name": "", "internalType": "bytes" }],
+    "name": "validators",
+    "inputs": [{ "type": "uint256", "name": "", "internalType": "uint256" }]
+  },
+  {
+    "type": "event",
+    "name": "CommitSpan",
+    "inputs": [
+      { "type": "uint256", "name": "span", "indexed": true },
+      { "type": "uint256", "name": "start", "indexed": true },
+      { "type": "uint256", "name": "end", "indexed": true }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "SetValidators",
+    "inputs": [
+      { "type": "uint256", "name": "span", "indexed": true },
+      { "type": "bytes", "name": "vbytes", "indexed": false }
+    ],
+    "anonymous": false
+  }
+]

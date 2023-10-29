@@ -1,0 +1,172 @@
+[
+  {
+    "type": "constructor",
+    "inputs": [
+      {
+        "type": "address",
+        "name": "stakeManagerStorage_",
+        "internalType": "address"
+      },
+      {
+        "type": "uint256",
+        "name": "initialSpanBlock_",
+        "internalType": "uint256"
+      },
+      { "type": "uint256", "name": "threshold_", "internalType": "uint256" },
+      { "type": "uint256", "name": "maxEpochSize_", "internalType": "uint256" }
+    ]
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "outputs": [{ "type": "uint256", "name": "", "internalType": "uint256" }],
+    "name": "SPAN",
+    "inputs": []
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "outputs": [{ "type": "uint256", "name": "", "internalType": "uint256" }],
+    "name": "calculateTransitionSpanCommitmentBlock",
+    "inputs": []
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "outputs": [{ "type": "uint256", "name": "", "internalType": "uint256" }],
+    "name": "currentSpanNumber",
+    "inputs": []
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "outputs": [
+      {
+        "type": "uint256",
+        "name": "lastEpochStart",
+        "internalType": "uint256"
+      },
+      { "type": "uint256", "name": "lastSlash", "internalType": "uint256" },
+      { "type": "uint256", "name": "counter", "internalType": "uint256" }
+    ],
+    "name": "epoch",
+    "inputs": [{ "type": "address", "name": "", "internalType": "address" }]
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "outputs": [{ "type": "uint256", "name": "", "internalType": "uint256" }],
+    "name": "getCommitmentBlock",
+    "inputs": [
+      { "type": "uint256", "name": "number_", "internalType": "uint256" }
+    ]
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "outputs": [{ "type": "uint256", "name": "", "internalType": "uint256" }],
+    "name": "getSpanByBlock",
+    "inputs": [
+      { "type": "uint256", "name": "number_", "internalType": "uint256" }
+    ]
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "outputs": [
+      { "type": "uint256", "name": "startBlock", "internalType": "uint256" },
+      { "type": "uint256", "name": "endBlock", "internalType": "uint256" }
+    ],
+    "name": "getSpanRange",
+    "inputs": [
+      { "type": "uint256", "name": "number_", "internalType": "uint256" }
+    ]
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "outputs": [{ "type": "uint256", "name": "", "internalType": "uint256" }],
+    "name": "initialSpanBlock",
+    "inputs": []
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "outputs": [{ "type": "bool", "name": "", "internalType": "bool" }],
+    "name": "isSignerSlashed",
+    "inputs": [
+      { "type": "address", "name": "signer_", "internalType": "address" },
+      { "type": "uint256", "name": "span_", "internalType": "uint256" }
+    ]
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "outputs": [{ "type": "uint256", "name": "", "internalType": "uint256" }],
+    "name": "maxEpochSize",
+    "inputs": []
+  },
+  {
+    "type": "function",
+    "stateMutability": "nonpayable",
+    "outputs": [{ "type": "bool", "name": "", "internalType": "bool" }],
+    "name": "slash",
+    "inputs": [
+      { "type": "address", "name": "signer_", "internalType": "address" },
+      { "type": "uint256", "name": "currentSpan_", "internalType": "uint256" }
+    ]
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "outputs": [{ "type": "bool", "name": "", "internalType": "bool" }],
+    "name": "span",
+    "inputs": [
+      { "type": "address", "name": "", "internalType": "address" },
+      { "type": "uint256", "name": "", "internalType": "uint256" }
+    ]
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "outputs": [{ "type": "uint256", "name": "", "internalType": "uint256" }],
+    "name": "stableSpanBlock",
+    "inputs": []
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "outputs": [{ "type": "uint256", "name": "", "internalType": "uint256" }],
+    "name": "threshold",
+    "inputs": []
+  },
+  {
+    "type": "event",
+    "name": "Slash",
+    "inputs": [
+      { "type": "address", "name": "signer", "indexed": true },
+      { "type": "uint256", "name": "span", "indexed": true },
+      { "type": "uint256", "name": "counter", "indexed": true }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "StartEpoch",
+    "inputs": [
+      { "type": "address", "name": "signer", "indexed": true },
+      { "type": "uint256", "name": "span", "indexed": true }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "Warn",
+    "inputs": [
+      { "type": "address", "name": "signer", "indexed": true },
+      { "type": "uint256", "name": "span", "indexed": true },
+      { "type": "uint256", "name": "counter", "indexed": true }
+    ],
+    "anonymous": false
+  }
+]
