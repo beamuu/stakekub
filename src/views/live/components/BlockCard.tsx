@@ -1,3 +1,4 @@
+import { unknownProfileImage } from "@/constants/url";
 import { Box, Card, Chip, Grid, Paper, Stack, Typography } from "@mui/material";
 import Link from "next/link";
 import { FC } from "react";
@@ -35,7 +36,7 @@ export const BlockCard: FC<BlockCardProps> = ({
   function getProfileImage() {
     return validatorInfo && validatorInfo.profile
       ? validatorInfo.profile.image
-      : "https://s2.coinmarketcap.com/static/img/coins/200x200/16093.png";
+      : unknownProfileImage;
   }
   function getProfileName() {
     return validatorInfo && validatorInfo.profile
@@ -58,15 +59,20 @@ export const BlockCard: FC<BlockCardProps> = ({
   const { text, bg } = getStatusColor();
   return (
     <Grid item xs={12} sm={4} md={3} lg={12 / 5}>
-      <Link href={`https://bkcscan.com/block/${spanBlock.blockNumber}`} style={{
-        textDecoration: "none"
-      }}>
+      <Link
+        href={`https://bkcscan.com/block/${spanBlock.blockNumber}`}
+        style={{
+          textDecoration: "none",
+        }}
+      >
         <Paper
           elevation={0}
+          variant="outlined"
           sx={{
             p: "10px",
             backgroundColor: bg,
             color: text,
+            transition: "500ms ease",
           }}
         >
           <Stack

@@ -17,14 +17,16 @@ type SpanData = {
   span: Span;
   currentSpan: bigint;
   spanSize: bigint;
-  getValidator: (signer: string) => ValidatorInfo | null
+  getValidator: (signer: string) => ValidatorInfo | null;
+  getSpanBlock: (blockNumber: bigint) => SpanBlock | null;
 };
 
 const defaultContextValue: SpanData = {
   span: [],
   currentSpan: BigInt(0),
   spanSize: BigInt(0),
-  getValidator: () => null
+  getValidator: () => null,
+  getSpanBlock: () => null,
 };
 
 export const spanContext = createContext<SpanData>(defaultContextValue);
@@ -67,6 +69,15 @@ export const SpanLiveProvider: FC<SpanLiveProviderProps> = (props) => {
   function getValidator(signer: string) {
     for (const each of validatorInfo) {
       if (each.blockSigner.toLowerCase() === signer.toLowerCase()) {
+        return each;
+      }
+    }
+    return null;
+  }
+
+  function getSpanBlock(blockNumber: bigint) {
+    for (const each of span) {
+      if (each.blockNumber === blockNumber) {
         return each;
       }
     }
@@ -237,7 +248,9 @@ export const SpanLiveProvider: FC<SpanLiveProviderProps> = (props) => {
   }, [currentBlockNumber]);
 
   return (
-    <spanContext.Provider value={{ span, currentSpan, spanSize, getValidator }}>
+    <spanContext.Provider
+      value={{ span, currentSpan, spanSize, getValidator, getSpanBlock }}
+    >
       {props.children}
     </spanContext.Provider>
   );

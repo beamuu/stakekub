@@ -1,7 +1,12 @@
-import { Box, Button, Container, Stack, Typography } from "@mui/material";
+import { Box, Breakpoint, Button, Container, Stack, Typography } from "@mui/material";
 import Link from "next/link";
+import { FC } from "react";
 
-export const Navbar = () => {
+interface NavbarProps {
+  containerSize?: Breakpoint;
+}
+
+export const Navbar: FC<NavbarProps> = (props) => {
   return (
     <Box
       sx={{
@@ -11,11 +16,11 @@ export const Navbar = () => {
         backgroundColor: "background.default",
         zIndex: 999,
         borderWidth: "0 0 1px 0",
-        borderColor: "background.paper",
+        borderColor: "divider",
         borderStyle: "solid",
       }}
     >
-      <Container maxWidth="xl" sx={{ py: "12px" }}>
+      <Container maxWidth={props.containerSize || "xl"} sx={{ py: "12px" }}>
         <Stack
           direction="row"
           justifyContent="space-between"
