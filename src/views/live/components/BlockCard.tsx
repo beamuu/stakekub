@@ -80,10 +80,6 @@ export const BlockCard: FC<BlockCardProps> = ({
             backgroundColor: bg,
             color: text,
             transition: "300ms ease",
-            "&:hover": mined ? {
-              transform: "scale(1.03)",
-              boxShadow: "0 1px 40px 10px #00000030",
-            }: undefined,
           }}
         >
           <Stack
