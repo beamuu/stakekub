@@ -1,5 +1,6 @@
 import { unknownProfileImage } from "@/constants/url";
 import { Box, Card, Chip, Grid, Paper, Stack, Typography } from "@mui/material";
+import { grey } from "@mui/material/colors";
 import Link from "next/link";
 import { FC } from "react";
 
@@ -11,20 +12,20 @@ interface BlockCardProps {
 
 const colors = {
   blockNotPropagated: {
-    bg: "",
-    text: "",
+    bg: grey[200],
+    text: "text.disabled",
   },
   blockMissed: {
     bg: "#ff2450",
     text: "#ffffff",
   },
   blockCurrentlyWaiting: {
-    bg: "#f2b40a",
-    text: "text.primary",
+    bg: "primary.main",
+    text: "#ffffff",
   },
   blockPropagated: {
-    bg: "#72d113",
-    text: "#ffffff",
+    bg: "background.paper",
+    text: "text.primary",
   },
 };
 
@@ -57,22 +58,32 @@ export const BlockCard: FC<BlockCardProps> = ({
     return colors.blockNotPropagated;
   }
   const { text, bg } = getStatusColor();
+  const mined = spanBlock.status.difficulty != 0
   return (
-    <Grid item xs={12} sm={4} md={3} lg={12 / 5}>
-      <Link
-        href={`https://bkcscan.com/block/${spanBlock.blockNumber}`}
-        style={{
-          textDecoration: "none",
-        }}
-      >
-        <Paper
-          elevation={0}
-          variant="outlined"
+    <Grid
+      item
+      xs={12}
+      sm={4}
+      md={3}
+      lg={12 / 5}
+      sx={{
+        borderStyle: "solid",
+        borderWidth: "0 1px 1px 0",
+        borderColor: grey[300],
+      }}
+    >
+      <LinkWrapper href={`https://bkcscan.com/block/${spanBlock.blockNumber}`} enabled={mined}>
+        <Box
           sx={{
-            p: "10px",
+            px: "10px",
+            py: "20px",
             backgroundColor: bg,
             color: text,
-            transition: "500ms ease",
+            transition: "300ms ease",
+            "&:hover": mined ? {
+              transform: "scale(1.03)",
+              boxShadow: "0 1px 40px 10px #00000030",
+            }: undefined,
           }}
         >
           <Stack
@@ -93,13 +104,13 @@ export const BlockCard: FC<BlockCardProps> = ({
               <img
                 alt="val-profile-img"
                 style={{
-                  width: "30px",
-                  height: "30px",
-                  borderRadius: "6px",
+                  width: "28px",
+                  height: "28px",
+                  borderRadius: "2px",
                 }}
                 src={getProfileImage()}
               />
-              <Typography fontWeight={600} fontSize={12} color="inherit">
+              <Typography fontWeight={500} fontSize={14} color="inherit">
                 {getProfileName()}
               </Typography>
             </Stack>
@@ -114,8 +125,30 @@ export const BlockCard: FC<BlockCardProps> = ({
               />
             </Box>
           </Stack>
-        </Paper>
-      </Link>
+        </Box>
+      </LinkWrapper>
     </Grid>
+  );
+};
+
+interface LinkWrapperProps {
+  enabled?: boolean;
+  href: string;
+  children?: any;
+}
+
+const LinkWrapper: FC<LinkWrapperProps> = ({ enabled, href, children }) => {
+  if (!enabled) {
+    return children;
+  }
+  return (
+    <Link
+      href={href}
+      style={{
+        textDecoration: "none",
+      }}
+    >
+      {children}
+    </Link>
   );
 };

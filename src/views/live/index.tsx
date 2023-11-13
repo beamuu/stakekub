@@ -1,19 +1,42 @@
 import { useSpan } from "@/contexts/span";
-import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  Grid,
+  LinearProgress,
+  Stack,
+  Typography,
+  linearProgressClasses,
+} from "@mui/material";
 import { FC, useState } from "react";
 import { BlockCard } from "./components/BlockCard";
 import { useCoreData } from "@/contexts/core/core";
-import { Header } from "./components/Header";
 import { ConsensusPlayer } from "./components/ConsensusPlayer";
 import { Stats } from "./components/Stats";
+import { grey } from "@mui/material/colors";
+import { State } from "./components/State";
 
 export const Live: FC = () => {
   const { currentBlockNumber } = useCoreData();
-  const { span, getValidator, currentSpan } = useSpan();
+  const { span, getValidator, spanSize } = useSpan();
   const [isMinimal, setIsMinimal] = useState(false);
+
+  function calculateProgress() {
+    if (spanSize === 0n) {
+      return 0;
+    }
+    let mod = BigInt(currentBlockNumber) % spanSize;
+    let modInt = parseInt(mod.toString());
+    let spanSizeInt = parseInt(spanSize.toString());
+    return (modInt / spanSizeInt) * 100;
+  }
+
+  const progress = calculateProgress();
+
   return (
-    <Container maxWidth="xl" sx={{ py: 1 }}>
-      <Stack direction="row" my={1}>
+    <Container maxWidth="xl" sx={{ py: "60px" }}>
+      {/* <Stack direction="row" my={1}>
         <Button
           color="secondary"
           variant="contained"
@@ -22,26 +45,74 @@ export const Live: FC = () => {
         >
           {isMinimal ? "Advance view ->" : "Minimal view ->"}
         </Button>
-      </Stack>
+      </Stack> */}
       {isMinimal ? (
         <ConsensusPlayer />
       ) : (
         <Box>
           {/* <Header /> */}
-          <Grid container>
-            <Grid item xs={12} sm={5} md={5} lg={6}>
-              <Typography variant="h4" mt={5} gutterBottom>
-                We are at span #{currentSpan.toLocaleString()}
-              </Typography>
-              <Typography variant="h6">
-                and currently at block #{currentBlockNumber.toLocaleString()}
-              </Typography>
+          <Grid
+            container
+            sx={{
+              borderStyle: "solid",
+              borderWidth: "0 1px 1px 0",
+              borderColor: "divider",
+            }}
+          >
+            <Grid
+              item
+              xs={12}
+              sm={5}
+              md={5}
+              lg={6}
+              sx={{
+                borderStyle: "solid",
+                borderWidth: "1px 0 0 1px",
+                borderColor: "divider",
+              }}
+            >
+              <State />
             </Grid>
-            <Grid item xs={12} sm={7} md={7} lg={6}>
+            <Grid
+              item
+              xs={12}
+              sm={7}
+              md={7}
+              lg={6}
+              sx={{
+                borderStyle: "solid",
+                borderWidth: "1px 0 0 1px",
+                borderColor: "divider",
+              }}
+            >
               <Stats />
             </Grid>
           </Grid>
-          <Grid container my={1} rowSpacing={"3px"} columnSpacing={"3px"}>
+          <Box mt={4}>
+            <LinearProgress
+              color="primary"
+              variant="determinate"
+              value={progress}
+              sx={{
+                height: "6px",
+                [`& .${linearProgressClasses.bar}`]: {
+                  borderRadius: 6,
+                },
+                [`&.${linearProgressClasses.colorPrimary}`]: {
+                  backgroundColor: "divider",
+                },
+              }}
+            />
+          </Box>
+          <Grid
+            container
+
+            sx={{
+              borderStyle: "solid",
+              borderWidth: "1px 0 0 1px",
+              borderColor: "divider",
+            }}
+          >
             {span.map((block, index) => {
               const info = getValidator(block.validator);
               return (

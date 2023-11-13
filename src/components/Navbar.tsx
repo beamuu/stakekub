@@ -28,19 +28,19 @@ export const Navbar: FC<NavbarProps> = (props) => {
         >
           <Box>
             <Typography
-              letterSpacing={6}
-              fontSize={14}
+            letterSpacing="-0.03em"
+              variant="h6"
               fontWeight={700}
               color="text.primary"
             >
-              STAKEKUB
+              Stakekub
             </Typography>
           </Box>
           <Link
             href="https://staking.bitkubchain.com/"
             style={{ textDecoration: "none" }}
           >
-            <Button variant="contained" sx={{ borderRadius: "200px" }}>
+            <Button variant="contained">
               {"Official Website ->"}
             </Button>
           </Link>

@@ -1,4 +1,8 @@
 import { createTheme } from "@mui/material";
+import { grey } from "@mui/material/colors";
+
+const headingFontFamily = `'Plus Jakarta Sans', sans-serif`;
+const bodyFontFamily = `'Inter', sans-serif`;
 
 export const defaultTheme = createTheme({
   palette: {
@@ -16,32 +20,38 @@ export const defaultTheme = createTheme({
     background: {
       paper: "#fff",
     },
-    divider: "#00000020",
+    divider: grey[300],
   },
   typography: {
-    fontFamily: `'Inter', sans-serif`,
+    fontFamily: bodyFontFamily,
     h1: {
       fontWeight: 600,
+      fontFamily: headingFontFamily,
       letterSpacing: "-0.035em",
     },
     h2: {
       fontWeight: 600,
+      fontFamily: headingFontFamily,
       letterSpacing: "-0.035em",
     },
     h3: {
       fontWeight: 600,
+      fontFamily: headingFontFamily,
       letterSpacing: "-0.030em",
     },
     h4: {
       fontWeight: 600,
+      fontFamily: headingFontFamily,
       letterSpacing: "-0.025em",
     },
     h5: {
       fontWeight: 600,
+      fontFamily: headingFontFamily,
       letterSpacing: "-0.02em",
     },
     h6: {
       fontWeight: 600,
+      fontFamily: headingFontFamily,
       letterSpacing: "-0.01em",
     },
     body1: {
@@ -62,6 +72,7 @@ export const defaultTheme = createTheme({
       styleOverrides: {
         root: {
           textTransform: "none",
+          fontWeight: 600,
         },
       },
     },

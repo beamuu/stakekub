@@ -19,6 +19,7 @@ type SpanData = {
   spanSize: bigint;
   getValidator: (signer: string) => ValidatorInfo | null;
   getSpanBlock: (blockNumber: bigint) => SpanBlock | null;
+  totalValidator: number;
 };
 
 const defaultContextValue: SpanData = {
@@ -27,6 +28,7 @@ const defaultContextValue: SpanData = {
   spanSize: BigInt(0),
   getValidator: () => null,
   getSpanBlock: () => null,
+  totalValidator: 0,
 };
 
 export const spanContext = createContext<SpanData>(defaultContextValue);
@@ -40,6 +42,7 @@ export const SpanLiveProvider: FC<SpanLiveProviderProps> = (props) => {
   const [spanSize, setSpanSize] = useState<bigint>(
     defaultContextValue.spanSize
   );
+  console.log(validatorInfo);
   const { currentBlockNumber } = useCoreData();
 
   async function fetchValidatorsInfo() {
@@ -249,7 +252,14 @@ export const SpanLiveProvider: FC<SpanLiveProviderProps> = (props) => {
 
   return (
     <spanContext.Provider
-      value={{ span, currentSpan, spanSize, getValidator, getSpanBlock }}
+      value={{
+        span,
+        currentSpan,
+        spanSize,
+        getValidator,
+        getSpanBlock,
+        totalValidator: validatorInfo.length,
+      }}
     >
       {props.children}
     </spanContext.Provider>

@@ -42,12 +42,9 @@ export const Stats = () => {
     return 1;
   });
   return (
-    <Paper
-      variant="outlined"
+    <Box
       sx={{
-        my: 3,
         p: 3,
-        maxWidth: "700px",
       }}
     >
       <Stack direction="row" justifyContent="space-between">
@@ -121,6 +118,6 @@ export const Stats = () => {
           </Box>
         );
       })}
-    </Paper>
+    </Box>
   );
 };
