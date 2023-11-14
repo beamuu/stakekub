@@ -5,6 +5,7 @@ import {
   Container,
   Grid,
   LinearProgress,
+  Skeleton,
   Stack,
   Typography,
   linearProgressClasses,
@@ -33,7 +34,9 @@ export const Live: FC = () => {
   }
 
   const progress = calculateProgress();
-
+  if (spanSize === 0n) {
+    return null
+  }
   return (
     <Container maxWidth="xl" sx={{ py: "60px" }}>
       {/* <Stack direction="row" my={1}>
@@ -104,27 +107,53 @@ export const Live: FC = () => {
               }}
             />
           </Box>
-          <Grid
-            container
-
+          <Box
             sx={{
-              borderStyle: "solid",
-              borderWidth: "1px 0 0 1px",
-              borderColor: "divider",
+              position: "relative",
             }}
           >
-            {span.map((block, index) => {
-              const info = getValidator(block.validator);
-              return (
-                <BlockCard
-                  key={`block-${index}`}
-                  spanBlock={block}
-                  validatorInfo={info}
-                  next={BigInt(currentBlockNumber + 1) === block.blockNumber}
-                />
-              );
-            })}
-          </Grid>
+            <Box
+              component="div"
+              height="auto"
+              sx={{
+                backgroundColor: `${grey[100]}d0`,
+                backdropFilter: "blur(3px)",
+                zIndex: 39,
+                display: BigInt(currentBlockNumber + 1) % spanSize == 0n ? "flex" : "none",
+                justifyContent: "center",
+                alignItems: "center",
+                transition: "400ms ease",
+                position: "absolute",
+                top: 0,
+                bottom: 0,
+                left: 0,
+                right: 0,
+              }}
+            >
+              <span className="loader"></span>
+            </Box>
+            <Grid
+              zIndex={39}
+              container
+              sx={{
+                borderStyle: "solid",
+                borderWidth: "1px 0 0 1px",
+                borderColor: "divider",
+              }}
+            >
+              {span.map((block, index) => {
+                const info = getValidator(block.validator);
+                return (
+                  <BlockCard
+                    key={`block-${index}`}
+                    spanBlock={block}
+                    validatorInfo={info}
+                    next={BigInt(currentBlockNumber + 1) === block.blockNumber}
+                  />
+                );
+              })}
+            </Grid>
+          </Box>
         </Box>
       )}
     </Container>

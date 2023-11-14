@@ -1,3 +1,4 @@
+import { posBlock } from "@/constants/chain";
 import { useCoreData } from "@/contexts/core/core";
 import { useSpan } from "@/contexts/span";
 import { Box, Grid, Typography } from "@mui/material";
@@ -8,7 +9,8 @@ export const State = () => {
     <Grid container>
       <BlockNumberDisplay title="Last mined block" />
       <SpanNumberDisplay title="Current span number" />
-      <TotalValidatorDisplay title="Total validator" />
+      <TotalValidatorDisplay title="Total validators" />
+      <PosBlockHeightDisplay title="PoS block height" />
     </Grid>
   );
 };
@@ -37,7 +39,7 @@ const BlockNumberDisplay: FC<DisplayProps> = ({ title }) => {
       }}
     >
       <DisplayLabel>{title}</DisplayLabel>
-      <Typography variant="h5">
+      <Typography variant="h5" color="primary.dark">
         {currentBlockNumber.toLocaleString()}
       </Typography>
     </Grid>
@@ -60,7 +62,7 @@ const SpanNumberDisplay: FC<DisplayProps> = ({ title }) => {
       }}
     >
       <DisplayLabel>{title}</DisplayLabel>
-      <Typography variant="h5">{currentSpan.toLocaleString()}</Typography>
+      <Typography variant="h5" color="primary.dark">{currentSpan.toLocaleString()}</Typography>
     </Grid>
   );
 };
@@ -84,7 +86,28 @@ const TotalValidatorDisplay: FC<DisplayProps> = ({ title }) => {
       }}
     >
       <DisplayLabel>{title}</DisplayLabel>
-      <Typography variant="h5">{totalValidator}</Typography>
+      <Typography variant="h5" color="primary.dark">{totalValidator}</Typography>
+    </Grid>
+  );
+};
+
+const PosBlockHeightDisplay: FC<DisplayProps> = ({ title }) => {
+  const { currentBlockNumber } = useCoreData()
+  return (
+    <Grid
+      item
+      xs={12}
+      sm={12}
+      md={6}
+      sx={{
+        p: 3,
+        borderStyle: "solid",
+        borderWidth: "0 0 1px 0",
+        borderColor: "divider",
+      }}
+    >
+      <DisplayLabel>{title}</DisplayLabel>
+      <Typography variant="h5" color="primary.dark">{(currentBlockNumber - posBlock + 1).toLocaleString()}</Typography>
     </Grid>
   );
 };

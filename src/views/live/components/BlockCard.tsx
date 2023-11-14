@@ -1,7 +1,17 @@
 import { unknownProfileImage } from "@/constants/url";
-import { Box, Card, Chip, Grid, Paper, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Card,
+  Chip,
+  Grid,
+  Icon,
+  Paper,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { grey } from "@mui/material/colors";
 import Link from "next/link";
+import { FaCheckCircle } from "react-icons/fa";
 import { FC } from "react";
 
 interface BlockCardProps {
@@ -12,8 +22,8 @@ interface BlockCardProps {
 
 const colors = {
   blockNotPropagated: {
-    bg: grey[200],
-    text: "text.disabled",
+    bg: grey[300],
+    text: "text.primary",
   },
   blockMissed: {
     bg: "#ff2450",
@@ -58,7 +68,7 @@ export const BlockCard: FC<BlockCardProps> = ({
     return colors.blockNotPropagated;
   }
   const { text, bg } = getStatusColor();
-  const mined = spanBlock.status.difficulty != 0
+  const mined = spanBlock.status.difficulty != 0;
   return (
     <Grid
       item
@@ -72,11 +82,15 @@ export const BlockCard: FC<BlockCardProps> = ({
         borderColor: grey[300],
       }}
     >
-      <LinkWrapper href={`https://bkcscan.com/block/${spanBlock.blockNumber}`} enabled={mined}>
+      <LinkWrapper
+        href={`https://bkcscan.com/block/${spanBlock.blockNumber}`}
+        enabled={mined}
+      >
         <Box
           sx={{
             px: "10px",
             py: "20px",
+            opacity: mined || next ? 1 : 0.2,
             backgroundColor: bg,
             color: text,
             transition: "300ms ease",
@@ -110,7 +124,7 @@ export const BlockCard: FC<BlockCardProps> = ({
                 {getProfileName()}
               </Typography>
             </Stack>
-            <Box>
+            <Stack direction="row" alignItems="center">
               <Chip
                 label={`#${spanBlock.blockNumber}`}
                 size="small"
@@ -119,7 +133,7 @@ export const BlockCard: FC<BlockCardProps> = ({
                   color: "inherit",
                 }}
               />
-            </Box>
+            </Stack>
           </Stack>
         </Box>
       </LinkWrapper>
