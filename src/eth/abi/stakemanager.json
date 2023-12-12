@@ -1,0 +1,704 @@
+[
+  {
+    "type": "constructor",
+    "inputs": [
+      {
+        "type": "tuple",
+        "name": "input_",
+        "internalType": "struct StakeManagerConstructorInput",
+        "components": [
+          { "type": "address" },
+          { "type": "address" },
+          { "type": "address" },
+          { "type": "address" },
+          { "type": "address" },
+          { "type": "address" },
+          { "type": "address" }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "outputs": [{ "type": "uint256", "name": "", "internalType": "uint256" }],
+    "name": "INCORRECT_VALIDATOR_ID",
+    "inputs": []
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "outputs": [{ "type": "uint16", "name": "", "internalType": "uint16" }],
+    "name": "MAX_COMMISSION_RATE",
+    "inputs": []
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "outputs": [{ "type": "uint16", "name": "", "internalType": "uint16" }],
+    "name": "MAX_INFRA_COMMISSION_RATE",
+    "inputs": []
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "outputs": [{ "type": "uint16", "name": "", "internalType": "uint16" }],
+    "name": "MAX_RATE",
+    "inputs": []
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "outputs": [{ "type": "address", "name": "", "internalType": "address" }],
+    "name": "callHelper",
+    "inputs": []
+  },
+  {
+    "type": "function",
+    "stateMutability": "nonpayable",
+    "outputs": [],
+    "name": "claimCommissionRewards",
+    "inputs": [
+      { "type": "uint256", "name": "validatorId_", "internalType": "uint256" }
+    ]
+  },
+  {
+    "type": "function",
+    "stateMutability": "nonpayable",
+    "outputs": [],
+    "name": "claimCommissionRewards",
+    "inputs": [
+      { "type": "uint256", "name": "validatorId_", "internalType": "uint256" },
+      { "type": "address", "name": "bitkubNext_", "internalType": "address" }
+    ]
+  },
+  {
+    "type": "function",
+    "stateMutability": "nonpayable",
+    "outputs": [],
+    "name": "claimRewards",
+    "inputs": [
+      { "type": "uint256", "name": "validatorId_", "internalType": "uint256" }
+    ]
+  },
+  {
+    "type": "function",
+    "stateMutability": "nonpayable",
+    "outputs": [],
+    "name": "claimRewards",
+    "inputs": [
+      { "type": "uint256", "name": "validatorId_", "internalType": "uint256" },
+      { "type": "address", "name": "bitkubNext_", "internalType": "address" }
+    ]
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "outputs": [{ "type": "address", "name": "", "internalType": "address" }],
+    "name": "committee",
+    "inputs": []
+  },
+  {
+    "type": "function",
+    "stateMutability": "payable",
+    "outputs": [{ "type": "bool", "name": "", "internalType": "bool" }],
+    "name": "delegationDeposit",
+    "inputs": [
+      { "type": "uint256", "name": "validatorId_", "internalType": "uint256" }
+    ]
+  },
+  {
+    "type": "function",
+    "stateMutability": "payable",
+    "outputs": [],
+    "name": "distributeReward",
+    "inputs": []
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "outputs": [{ "type": "uint256", "name": "", "internalType": "uint256" }],
+    "name": "getMinimalValidatorIndex",
+    "inputs": [
+      { "type": "address", "name": "signer_", "internalType": "address" }
+    ]
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "outputs": [
+      {
+        "type": "tuple[]",
+        "name": "",
+        "internalType": "struct MinimalValidator[]",
+        "components": [{ "type": "address" }, { "type": "uint256" }]
+      }
+    ],
+    "name": "getMinimalValidators",
+    "inputs": []
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "outputs": [
+      {
+        "type": "tuple[]",
+        "name": "",
+        "internalType": "struct MinimalValidator[]",
+        "components": [{ "type": "address" }, { "type": "uint256" }]
+      }
+    ],
+    "name": "getMinimalValidatorsByPage",
+    "inputs": [
+      { "type": "uint256", "name": "page_", "internalType": "uint256" },
+      { "type": "uint256", "name": "limit_", "internalType": "uint256" }
+    ]
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "outputs": [{ "type": "uint256", "name": "", "internalType": "uint256" }],
+    "name": "getMinimalValidatorsLength",
+    "inputs": []
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "outputs": [{ "type": "uint256", "name": "", "internalType": "uint256" }],
+    "name": "getValidatorId",
+    "inputs": [
+      { "type": "address", "name": "signer_", "internalType": "address" }
+    ]
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "outputs": [
+      { "type": "address[]", "name": "", "internalType": "address[]" }
+    ],
+    "name": "getValidators",
+    "inputs": []
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "outputs": [
+      { "type": "address", "name": "", "internalType": "contract IKKUB" }
+    ],
+    "name": "kkub",
+    "inputs": []
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "outputs": [
+      { "type": "address", "name": "", "internalType": "contract StakingNFT" }
+    ],
+    "name": "nftContract",
+    "inputs": []
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "outputs": [{ "type": "address", "name": "", "internalType": "address" }],
+    "name": "officialPoolStaker",
+    "inputs": []
+  },
+  {
+    "type": "function",
+    "stateMutability": "payable",
+    "outputs": [],
+    "name": "restake",
+    "inputs": [
+      { "type": "uint256", "name": "validatorId_", "internalType": "uint256" }
+    ]
+  },
+  {
+    "type": "function",
+    "stateMutability": "nonpayable",
+    "outputs": [],
+    "name": "restake",
+    "inputs": [
+      { "type": "uint256", "name": "validatorId_", "internalType": "uint256" },
+      { "type": "uint256", "name": "amount_", "internalType": "uint256" },
+      { "type": "address", "name": "bitkubNext_", "internalType": "address" }
+    ]
+  },
+  {
+    "type": "function",
+    "stateMutability": "nonpayable",
+    "outputs": [],
+    "name": "setCallHelper",
+    "inputs": [
+      { "type": "address", "name": "_callHelper", "internalType": "address" }
+    ]
+  },
+  {
+    "type": "function",
+    "stateMutability": "nonpayable",
+    "outputs": [],
+    "name": "setCommittee",
+    "inputs": [
+      { "type": "address", "name": "_committee", "internalType": "address" }
+    ]
+  },
+  {
+    "type": "function",
+    "stateMutability": "nonpayable",
+    "outputs": [],
+    "name": "setOfficialPoolStaker",
+    "inputs": [
+      {
+        "type": "address",
+        "name": "officialPoolStaker_",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "stateMutability": "nonpayable",
+    "outputs": [],
+    "name": "setTransferRouter",
+    "inputs": [
+      {
+        "type": "address",
+        "name": "_transferRouter",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "stateMutability": "nonpayable",
+    "outputs": [{ "type": "bool", "name": "", "internalType": "bool" }],
+    "name": "slash",
+    "inputs": [
+      { "type": "address", "name": "signer_", "internalType": "address" }
+    ]
+  },
+  {
+    "type": "function",
+    "stateMutability": "nonpayable",
+    "outputs": [],
+    "name": "stake",
+    "inputs": [
+      { "type": "address", "name": "signer_", "internalType": "address" },
+      { "type": "bool", "name": "delegation_", "internalType": "bool" },
+      { "type": "uint256", "name": "amount_", "internalType": "uint256" },
+      { "type": "address", "name": "bitkubNext_", "internalType": "address" }
+    ]
+  },
+  {
+    "type": "function",
+    "stateMutability": "payable",
+    "outputs": [],
+    "name": "stake",
+    "inputs": [
+      { "type": "address", "name": "signer_", "internalType": "address" },
+      { "type": "bool", "name": "delegation_", "internalType": "bool" }
+    ]
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "outputs": [
+      {
+        "type": "address",
+        "name": "",
+        "internalType": "contract IStakeManagerStorage"
+      }
+    ],
+    "name": "stakeManagerStorage",
+    "inputs": []
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "outputs": [
+      {
+        "type": "address",
+        "name": "",
+        "internalType": "contract IStakeManagerVault"
+      }
+    ],
+    "name": "stakeManagerVault",
+    "inputs": []
+  },
+  {
+    "type": "function",
+    "stateMutability": "nonpayable",
+    "outputs": [{ "type": "bool", "name": "", "internalType": "bool" }],
+    "name": "transferFunds",
+    "inputs": [
+      { "type": "uint256", "name": "validatorId_", "internalType": "uint256" },
+      { "type": "uint256", "name": "amount_", "internalType": "uint256" },
+      { "type": "address", "name": "delegator_", "internalType": "address" },
+      {
+        "type": "uint8",
+        "name": "mode_",
+        "internalType": "enum TransferTokenMode"
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "stateMutability": "nonpayable",
+    "outputs": [],
+    "name": "transferInfraCommission",
+    "inputs": [
+      {
+        "type": "uint256[]",
+        "name": "validatorIds_",
+        "internalType": "uint256[]"
+      },
+      { "type": "uint256[]", "name": "amounts_", "internalType": "uint256[]" },
+      { "type": "address", "name": "to_", "internalType": "address payable" }
+    ]
+  },
+  {
+    "type": "function",
+    "stateMutability": "view",
+    "outputs": [
+      {
+        "type": "address",
+        "name": "",
+        "internalType": "contract ITransferRouter"
+      }
+    ],
+    "name": "transferRouter",
+    "inputs": []
+  },
+  {
+    "type": "function",
+    "stateMutability": "nonpayable",
+    "outputs": [{ "type": "bool", "name": "", "internalType": "bool" }],
+    "name": "transferUnallocatedReward",
+    "inputs": [
+      { "type": "address", "name": "to_", "internalType": "address payable" },
+      { "type": "uint256", "name": "amount_", "internalType": "uint256" }
+    ]
+  },
+  {
+    "type": "function",
+    "stateMutability": "nonpayable",
+    "outputs": [],
+    "name": "unstake",
+    "inputs": [
+      { "type": "uint256", "name": "validatorId_", "internalType": "uint256" }
+    ]
+  },
+  {
+    "type": "function",
+    "stateMutability": "nonpayable",
+    "outputs": [],
+    "name": "unstake",
+    "inputs": [
+      { "type": "uint256", "name": "validatorId_", "internalType": "uint256" },
+      { "type": "address", "name": "bitkubNext_", "internalType": "address" }
+    ]
+  },
+  {
+    "type": "function",
+    "stateMutability": "nonpayable",
+    "outputs": [],
+    "name": "updateCommissionRate",
+    "inputs": [
+      { "type": "uint256", "name": "validatorId_", "internalType": "uint256" },
+      {
+        "type": "uint256",
+        "name": "newCommissionRate_",
+        "internalType": "uint256"
+      },
+      { "type": "address", "name": "bitkubNext_", "internalType": "address" }
+    ]
+  },
+  {
+    "type": "function",
+    "stateMutability": "nonpayable",
+    "outputs": [],
+    "name": "updateCommissionRate",
+    "inputs": [
+      { "type": "uint256", "name": "validatorId_", "internalType": "uint256" },
+      {
+        "type": "uint256",
+        "name": "newCommissionRate_",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "stateMutability": "nonpayable",
+    "outputs": [],
+    "name": "updateInfraCommissionRate",
+    "inputs": [
+      { "type": "uint256", "name": "validatorId_", "internalType": "uint256" },
+      {
+        "type": "uint256",
+        "name": "newInfraCommissionRate_",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "stateMutability": "nonpayable",
+    "outputs": [],
+    "name": "updateMinDelegated",
+    "inputs": [
+      { "type": "uint256", "name": "validatorId_", "internalType": "uint256" },
+      {
+        "type": "uint256",
+        "name": "newMinDelegated_",
+        "internalType": "uint256"
+      }
+    ]
+  },
+  {
+    "type": "function",
+    "stateMutability": "nonpayable",
+    "outputs": [],
+    "name": "updateMinDelegated",
+    "inputs": [
+      { "type": "uint256", "name": "validatorId_", "internalType": "uint256" },
+      {
+        "type": "uint256",
+        "name": "newMinDelegated_",
+        "internalType": "uint256"
+      },
+      { "type": "address", "name": "bitkubNext_", "internalType": "address" }
+    ]
+  },
+  {
+    "type": "function",
+    "stateMutability": "nonpayable",
+    "outputs": [],
+    "name": "updateValidatorDelegation",
+    "inputs": [
+      { "type": "uint256", "name": "validatorId_", "internalType": "uint256" },
+      { "type": "bool", "name": "delegation_", "internalType": "bool" },
+      { "type": "address", "name": "bitkubNext_", "internalType": "address" }
+    ]
+  },
+  {
+    "type": "function",
+    "stateMutability": "nonpayable",
+    "outputs": [],
+    "name": "updateValidatorDelegation",
+    "inputs": [
+      { "type": "uint256", "name": "validatorId_", "internalType": "uint256" },
+      { "type": "bool", "name": "delegation_", "internalType": "bool" }
+    ]
+  },
+  {
+    "type": "function",
+    "stateMutability": "nonpayable",
+    "outputs": [],
+    "name": "updateValidatorState",
+    "inputs": [
+      { "type": "uint256", "name": "validatorId_", "internalType": "uint256" },
+      { "type": "int256", "name": "amount_", "internalType": "int256" }
+    ]
+  },
+  {
+    "type": "function",
+    "stateMutability": "nonpayable",
+    "outputs": [{ "type": "uint256", "name": "", "internalType": "uint256" }],
+    "name": "withdrawDelegatorsReward",
+    "inputs": [
+      { "type": "uint256", "name": "validatorId_", "internalType": "uint256" }
+    ]
+  },
+  {
+    "type": "event",
+    "name": "CallHelperSet",
+    "inputs": [
+      { "type": "address", "name": "oldCallHelper", "indexed": true },
+      { "type": "address", "name": "newCallHelper", "indexed": true },
+      { "type": "address", "name": "caller", "indexed": true }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "ClaimRewards",
+    "inputs": [
+      { "type": "uint256", "name": "validatorId", "indexed": true },
+      { "type": "uint256", "name": "amount", "indexed": false },
+      { "type": "uint8", "name": "liquidateMode", "indexed": false }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "CommissionRateUpdated",
+    "inputs": [
+      { "type": "uint256", "name": "validatorId", "indexed": true },
+      { "type": "uint256", "name": "newCommissionRate", "indexed": false },
+      { "type": "uint256", "name": "timestamp", "indexed": false }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "CommitteeSet",
+    "inputs": [
+      { "type": "address", "name": "oldCommittee", "indexed": true },
+      { "type": "address", "name": "newCommittee", "indexed": true },
+      { "type": "address", "name": "caller", "indexed": true }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "DelegationUpdated",
+    "inputs": [
+      { "type": "uint256", "name": "validatorId", "indexed": true },
+      { "type": "bool", "name": "delegation", "indexed": false },
+      { "type": "uint256", "name": "timestamp", "indexed": false }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "DeprecatedDeposit",
+    "inputs": [
+      { "type": "uint256", "name": "validatorId", "indexed": true },
+      { "type": "uint256", "name": "amount", "indexed": false },
+      { "type": "uint8", "name": "validatorStatus", "indexed": false }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "DistributeRewards",
+    "inputs": [
+      { "type": "uint256", "name": "validatorId", "indexed": true },
+      { "type": "uint256", "name": "totalReward", "indexed": false },
+      { "type": "uint256", "name": "validatorReward", "indexed": false },
+      { "type": "uint256", "name": "delegatorsReward", "indexed": false },
+      { "type": "uint256", "name": "infraCommission", "indexed": false },
+      { "type": "uint256", "name": "validatorCommission", "indexed": false },
+      { "type": "uint256", "name": "delegatorCommission", "indexed": false }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "InfraCommissionRateUpdated",
+    "inputs": [
+      { "type": "uint256", "name": "validatorId", "indexed": true },
+      { "type": "uint256", "name": "newInfraCommissionRate", "indexed": false },
+      { "type": "uint256", "name": "timestamp", "indexed": false }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "MinDelegatedUpdated",
+    "inputs": [
+      { "type": "uint256", "name": "validatorId", "indexed": true },
+      { "type": "uint256", "name": "newMinDelegation", "indexed": false },
+      { "type": "uint256", "name": "timestamp", "indexed": false }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "OfficialPoolStakerSet",
+    "inputs": [
+      { "type": "address", "name": "oldOfficialPoolStaker", "indexed": true },
+      { "type": "address", "name": "newOfficialPoolStaker", "indexed": true },
+      { "type": "address", "name": "caller", "indexed": true }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "SlashFail",
+    "inputs": [
+      { "type": "uint256", "name": "validatorId", "indexed": true },
+      { "type": "uint8", "name": "errorCase", "indexed": true }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "SlashSuccess",
+    "inputs": [
+      { "type": "uint256", "name": "validatorId", "indexed": true },
+      { "type": "bool", "name": "isMinimalValidator", "indexed": true },
+      { "type": "uint256", "name": "slashedAmount", "indexed": false },
+      { "type": "uint256", "name": "amount", "indexed": false },
+      { "type": "uint256", "name": "delegatedAmount", "indexed": false }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "TransferInfraCommission",
+    "inputs": [
+      { "type": "uint256", "name": "validatorId", "indexed": true },
+      { "type": "address", "name": "to", "indexed": true },
+      { "type": "uint256", "name": "amount", "indexed": false },
+      { "type": "address", "name": "caller", "indexed": true }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "TransferRouterSet",
+    "inputs": [
+      { "type": "address", "name": "oldTransferRouter", "indexed": true },
+      { "type": "address", "name": "newTransferRouter", "indexed": true },
+      { "type": "address", "name": "caller", "indexed": true }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "TransferUnallocatedReward",
+    "inputs": [
+      { "type": "address", "name": "to", "indexed": true },
+      { "type": "uint256", "name": "amount", "indexed": false },
+      { "type": "address", "name": "caller", "indexed": true }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "ValidatorRestaked",
+    "inputs": [
+      { "type": "uint256", "name": "validatorId", "indexed": true },
+      { "type": "bool", "name": "isMinimalValidator", "indexed": true },
+      { "type": "uint256", "name": "amount", "indexed": false }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "ValidatorStaked",
+    "inputs": [
+      { "type": "uint256", "name": "validatorId", "indexed": true },
+      { "type": "address", "name": "validator", "indexed": true },
+      { "type": "uint256", "name": "amount", "indexed": false },
+      { "type": "address", "name": "validatorShareContract", "indexed": true },
+      { "type": "uint8", "name": "validatorStatus", "indexed": false },
+      { "type": "uint256", "name": "minDelegated", "indexed": false },
+      { "type": "bool", "name": "isDelegation", "indexed": false },
+      { "type": "bool", "name": "isOfficialPool", "indexed": false }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "ValidatorUnstaked",
+    "inputs": [
+      { "type": "uint256", "name": "validatorId", "indexed": true },
+      { "type": "uint256", "name": "amount", "indexed": false }
+    ],
+    "anonymous": false
+  },
+  { "type": "receive" }
+]

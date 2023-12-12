@@ -1,7 +1,7 @@
 import { mainnetRpcInstance } from "@/lib/axios";
 import { AxiosInstance } from "axios";
 
-export class Rpc {
+export class RPC {
   private inst: AxiosInstance;
   constructor(instance: AxiosInstance) {
     this.inst = instance;
@@ -40,4 +40,4 @@ export class Rpc {
   public async getCurrentBlockNumber() {}
 }
 
-export const rpc = new Rpc(mainnetRpcInstance);
+export const rpc = new RPC(mainnetRpcInstance);

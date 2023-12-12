@@ -5,10 +5,16 @@ import { Box, Chip, Grid, Paper, Stack, Typography } from "@mui/material";
 import LinearProgress, {
   linearProgressClasses,
 } from "@mui/material/LinearProgress";
+import { FC } from "react";
 import { GiPerspectiveDiceSixFacesRandom } from "react-icons/gi";
 
-export const Stats = () => {
-  const { span, getValidator } = useSpan();
+interface StatsProps {
+  span: Span;
+  spanNumber: bigint;
+}
+
+export const Stats: FC<StatsProps> = ({ span, spanNumber }) => {
+  const { getValidator } = useSpan();
 
   function count(s: Span) {
     const m: { [key: string]: number } = {};
@@ -24,7 +30,6 @@ export const Stats = () => {
   }
 
   const countedMap = count(span);
-  console.log(countedMap);
   const ks = Object.keys(countedMap);
   const countedArr = [];
   for (const key of ks) {
@@ -49,7 +54,7 @@ export const Stats = () => {
     >
       <Stack direction="row" justifyContent="space-between">
         <Box mb={4} pr={3}>
-          <Typography variant="h6">Randomization</Typography>
+          <Typography variant="h6">Randomization {`@${spanNumber.toLocaleString()}`}</Typography>
           <Typography variant="body2" color="text.secondary">
             This show how Proof-of-Stake consensus randoms validators in each
             span.
@@ -75,7 +80,6 @@ export const Stats = () => {
         const displayImage = stat.data?.profile?.image || unknownProfileImage;
         const imageSize = "30px";
         const progress = (stat.count / span.length) * 100;
-        console.log(progress, stat.count);
         return (
           <Box key={`stat-${index}`} mb={2}>
             <Stack direction="row" alignItems="center" spacing={1}>

@@ -1,5 +1,10 @@
 type WarnEvent = {
   signer: string;
-  span: BigInt;
-  counter: BigInt;
-}
+  span: bigint;
+  counter: bigint;
+};
+
+type RPCEvent<InnerType> = {
+  blockNumber: number;
+  inner: InnerType;
+};

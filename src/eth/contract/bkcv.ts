@@ -3,7 +3,7 @@ import { SmartContract, contracts } from ".";
 import abi from "../abi/bkcvalidatorset.json";
 import { Result } from "ethers";
 
-class BKCValidatorSet extends SmartContract {
+export class BKCValidatorSet extends SmartContract {
   async currentSpanNumber() {
     const result = await this.callFunction("currentSpanNumber");
     const num = result.toArray()[0];

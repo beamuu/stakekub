@@ -1,3 +1,4 @@
+import { px } from "@/utils/units";
 import { Box, Breakpoint, Button, Container, Stack, Typography } from "@mui/material";
 import Link from "next/link";
 import { FC } from "react";
@@ -5,6 +6,8 @@ import { FC } from "react";
 interface NavbarProps {
   containerSize?: Breakpoint;
 }
+
+export const navbarHeight = 60;
 
 export const Navbar: FC<NavbarProps> = (props) => {
   return (
@@ -20,11 +23,12 @@ export const Navbar: FC<NavbarProps> = (props) => {
         borderStyle: "solid",
       }}
     >
-      <Container maxWidth={props.containerSize || "xl"} sx={{ py: "12px" }}>
+      <Container maxWidth={props.containerSize || "xl"}>
         <Stack
           direction="row"
           justifyContent="space-between"
           alignItems="center"
+          height={px(navbarHeight)}
         >
           <Box>
             <Typography

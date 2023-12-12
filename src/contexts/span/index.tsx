@@ -8,6 +8,7 @@ import {
 } from "@/utils/rpc";
 import { ethclient } from "@/lib/ethers";
 import { stakingPlatform } from "@/lib/graphql/staking";
+import { pos } from "@/usecases/pos";
 
 type SpanLiveProviderProps = {
   children?: any;
@@ -20,6 +21,7 @@ type SpanData = {
   getValidator: (signer: string) => ValidatorInfo | null;
   getSpanBlock: (blockNumber: bigint) => SpanBlock | null;
   totalValidator: number;
+  spanByNumber: (spanNumber: bigint) => Promise<Span>;
 };
 
 const defaultContextValue: SpanData = {
@@ -29,6 +31,10 @@ const defaultContextValue: SpanData = {
   getValidator: () => null,
   getSpanBlock: () => null,
   totalValidator: 0,
+  spanByNumber: (spanNumber: bigint) =>
+    new Promise<Span>((resolve, _) => {
+      resolve([]);
+    }),
 };
 
 export const spanContext = createContext<SpanData>(defaultContextValue);
@@ -42,7 +48,7 @@ export const SpanLiveProvider: FC<SpanLiveProviderProps> = (props) => {
   const [spanSize, setSpanSize] = useState<bigint>(
     defaultContextValue.spanSize
   );
-  console.log(validatorInfo);
+
   const { currentBlockNumber } = useCoreData();
 
   async function fetchValidatorsInfo() {
@@ -214,6 +220,11 @@ export const SpanLiveProvider: FC<SpanLiveProviderProps> = (props) => {
     setSpan([...s]);
   }
 
+  // Implement POS usecases
+  async function spanByNumber(spanNumber: bigint): Promise<Span> {
+    return await pos.spanByNumber(spanNumber)
+  }
+
   useEffect(() => {
     fetchSpan();
     fetchSpanSize();
@@ -259,6 +270,7 @@ export const SpanLiveProvider: FC<SpanLiveProviderProps> = (props) => {
         getValidator,
         getSpanBlock,
         totalValidator: validatorInfo.length,
+        spanByNumber,
       }}
     >
       {props.children}

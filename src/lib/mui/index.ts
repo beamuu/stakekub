@@ -56,6 +56,7 @@ export const defaultTheme = createTheme({
     },
     body1: {
       fontSize: 16,
+      fontWeight: 500,
     },
     body2: {
       fontSize: 14,
