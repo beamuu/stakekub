@@ -9,10 +9,11 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { grey } from "@mui/material/colors";
+import { blueGrey, grey } from "@mui/material/colors";
 import Link from "next/link";
 import { FaCheckCircle } from "react-icons/fa";
 import { FC } from "react";
+import { shortenText } from "@/utils/string";
 
 interface BlockCardProps {
   spanBlock: SpanBlock;
@@ -22,7 +23,7 @@ interface BlockCardProps {
 
 const colors = {
   blockNotPropagated: {
-    bg: grey[300],
+    bg: "grey.100",
     text: "text.primary",
   },
   blockMissed: {
@@ -31,10 +32,10 @@ const colors = {
   },
   blockCurrentlyWaiting: {
     bg: "primary.main",
-    text: "#ffffff",
+    text: "primary.contrastText",
   },
   blockPropagated: {
-    bg: "background.paper",
+    bg: "background.default",
     text: "text.primary",
   },
 };
@@ -79,7 +80,7 @@ export const BlockCard: FC<BlockCardProps> = ({
       sx={{
         borderStyle: "solid",
         borderWidth: "0 1px 1px 0",
-        borderColor: grey[300],
+        borderColor: "divider",
       }}
     >
       <LinkWrapper
@@ -88,9 +89,8 @@ export const BlockCard: FC<BlockCardProps> = ({
       >
         <Box
           sx={{
-            px: "10px",
-            py: "20px",
-            opacity: mined || next ? 1 : 0.2,
+            p: "8px",
+            opacity: mined || next ? 1 : 0.3,
             backgroundColor: bg,
             color: text,
             transition: "300ms ease",
@@ -120,19 +120,14 @@ export const BlockCard: FC<BlockCardProps> = ({
                 }}
                 src={getProfileImage()}
               />
-              <Typography fontWeight={500} fontSize={14} color="inherit">
-                {getProfileName()}
-              </Typography>
-            </Stack>
-            <Stack direction="row" alignItems="center">
-              <Chip
-                label={`#${spanBlock.blockNumber}`}
-                size="small"
-                sx={{
-                  fontWeight: 600,
-                  color: "inherit",
-                }}
-              />
+              <Box>
+                <Typography fontWeight={500} fontSize={12} color="inherit">
+                  <strong>{shortenText(getProfileName(), 15)}</strong>
+                </Typography>
+                <Typography fontSize={12} color="inherit" sx={{ opacity: 0.7 }}>
+                  {`#${spanBlock.blockNumber.toLocaleString()}`}
+                </Typography>
+              </Box>
             </Stack>
           </Stack>
         </Box>

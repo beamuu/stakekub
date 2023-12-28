@@ -5,6 +5,7 @@ import { Box, Chip, Grid, Paper, Stack, Typography } from "@mui/material";
 import LinearProgress, {
   linearProgressClasses,
 } from "@mui/material/LinearProgress";
+import { grey } from "@mui/material/colors";
 import { FC } from "react";
 import { GiPerspectiveDiceSixFacesRandom } from "react-icons/gi";
 
@@ -40,22 +41,14 @@ export const Stats: FC<StatsProps> = ({ span, spanNumber }) => {
     });
   }
 
-  const sorted = countedArr.sort((a, b) => {
-    if (a.count > b.count) {
-      return -1;
-    }
-    return 1;
-  });
   return (
-    <Box
-      sx={{
-        p: 3,
-      }}
-    >
+    <Box>
       <Stack direction="row" justifyContent="space-between">
         <Box mb={4} pr={3}>
-          <Typography variant="h6">Randomization {`@${spanNumber.toLocaleString()}`}</Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="h6">
+            Randomization {`@${spanNumber.toLocaleString()}`}
+          </Typography>
+          <Typography variant="body2" color="text.secondary" fontSize={12}>
             This show how Proof-of-Stake consensus randoms validators in each
             span.
           </Typography>
@@ -63,15 +56,15 @@ export const Stats: FC<StatsProps> = ({ span, spanNumber }) => {
         <Box>
           <Box
             sx={{
-              backgroundColor: "divider",
+              backgroundColor: "grey.50",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
               p: 1,
-              borderRadius: 10,
+              borderRadius: 2,
             }}
           >
-            <GiPerspectiveDiceSixFacesRandom size="40px" />
+            <GiPerspectiveDiceSixFacesRandom size="28px" />
           </Box>
         </Box>
       </Stack>
@@ -115,6 +108,7 @@ export const Stats: FC<StatsProps> = ({ span, spanNumber }) => {
                   },
                   [`& .${linearProgressClasses.bar}`]: {
                     borderRadius: 6,
+                    // backgroundColor: "primary.dark"
                   },
                 }}
               />

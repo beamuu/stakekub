@@ -1,12 +1,18 @@
+import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
-import { HomePage } from "@/views/home";
-import { Box } from "@mui/material";
+import { CoreDataProvider } from "@/contexts/core/core";
+import { SpanLiveProvider } from "@/contexts/span";
+import { ethclient } from "@/lib/ethers";
+import { Live } from "@/views/home";
 
-export default function Home() {
+export default function LivePage() {
   return (
-    <Box>
-      <Navbar containerSize="lg"/>
-      <HomePage />
-    </Box>
+    <CoreDataProvider provider={ethclient}>
+      <SpanLiveProvider>
+        <Navbar />
+        <Live />
+        <Footer />
+      </SpanLiveProvider>
+    </CoreDataProvider>
   );
 }

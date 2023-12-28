@@ -1,26 +1,41 @@
+import { concat } from "@/utils/string";
 import { createTheme } from "@mui/material";
-import { grey } from "@mui/material/colors";
+import { blueGrey, grey } from "@mui/material/colors";
 
-const headingFontFamily = `'Plus Jakarta Sans', sans-serif`;
-const bodyFontFamily = `'Inter', sans-serif`;
+const headingFontFamily = `'Inter', 'Noto Sans Thai', sans-serif`;
+const bodyFontFamily = `'Inter', 'Noto Sans Thai', sans-serif`;
 
 export const defaultTheme = createTheme({
   palette: {
+    mode: "dark",
     primary: {
-      main: "#00ad45",
-      contrastText: "#ffffff",
+      main: "#20c972",
+      contrastText: "#101010",
     },
     secondary: {
-      main: "#000000d0",
+      main: "#242424",
       contrastText: "#ffffff",
     },
+    grey: {
+      50: grey[900],
+      100: grey[800],
+      200: grey[700],
+      300: grey[600],
+      400: grey[500],
+      500: grey[400],
+      600: grey[300],
+      700: grey[200],
+      800: grey[100],
+      900: grey[50],
+    },
     text: {
-      primary: "#323232",
+      // primary: "#fafaff",
+      // secondary: "#cecece",
+      // disabled: "#89898a",
     },
     background: {
-      paper: "#fff",
+      default: "#000000",
     },
-    divider: grey[300],
   },
   typography: {
     fontFamily: bodyFontFamily,
@@ -80,6 +95,16 @@ export const defaultTheme = createTheme({
     MuiPaper: {
       defaultProps: {
         elevation: 0,
+      },
+    },
+    MuiTooltip: {
+      styleOverrides: {
+        tooltip: {
+          backgroundColor: grey[800],
+        },
+        tooltipArrow: {
+          backgroundColor: grey[800],
+        },
       },
     },
   },

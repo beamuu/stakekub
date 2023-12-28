@@ -8,3 +8,7 @@ export function shortenText(txt: string, length: number) {
   }
   return txt.slice(0, length) + "...";
 }
+
+export function concat(txt1: string, txt2: string): string {
+  return txt1 + txt2;
+}
