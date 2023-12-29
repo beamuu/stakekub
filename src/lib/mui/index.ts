@@ -13,8 +13,8 @@ export const defaultTheme = createTheme({
       contrastText: "#101010",
     },
     secondary: {
-      main: "#242424",
-      contrastText: "#ffffff",
+      main: grey[400],
+      contrastText: grey[100],
     },
     grey: {
       50: grey[900],

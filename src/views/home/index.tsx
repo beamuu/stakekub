@@ -6,14 +6,9 @@ import {
   Skeleton,
 } from "@mui/material";
 import { FC, useEffect, useState } from "react";
-import { BlockCard } from "./components/BlockCard";
 import { useCoreData } from "@/contexts/core/core";
-import { ConsensusPlayer } from "./components/ConsensusPlayer";
 import { Stats } from "./components/Stats";
-import { blueGrey, grey } from "@mui/material/colors";
-import { State } from "./components/State";
 import { slashManager } from "@/eth/contract/slash";
-import { Warns } from "./components/Warns";
 import { SpanTable } from "./components/SpanTable";
 import { useRouter } from "next/router";
 import { Controller } from "./components/Controller";

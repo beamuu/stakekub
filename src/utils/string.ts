@@ -1,5 +1,5 @@
 export function shortenAddress(addr: string) {
-  return addr.slice(6, addr.length - 4);
+  return addr.slice(0, 6) + "..." + addr.slice(addr.length - 4, addr.length);
 }
 
 export function shortenText(txt: string, length: number) {

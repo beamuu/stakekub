@@ -5,6 +5,7 @@ type WarnEvent = {
 };
 
 type RPCEvent<InnerType> = {
+  timestamp: number;
   blockNumber: number;
   inner: InnerType;
 };

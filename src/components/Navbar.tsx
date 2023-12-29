@@ -1,5 +1,12 @@
 import { px } from "@/utils/units";
-import { Box, Breakpoint, Button, Container, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Breakpoint,
+  Button,
+  Container,
+  Stack,
+  Typography,
+} from "@mui/material";
 import Link from "next/link";
 import { FC } from "react";
 
@@ -32,7 +39,7 @@ export const Navbar: FC<NavbarProps> = (props) => {
         >
           <Box>
             <Typography
-            letterSpacing="-0.03em"
+              letterSpacing="-0.03em"
               variant="h6"
               fontWeight={700}
               color="text.primary"
@@ -40,14 +47,14 @@ export const Navbar: FC<NavbarProps> = (props) => {
               Stakekub
             </Typography>
           </Box>
-          <Link
-            href="https://staking.bitkubchain.com/"
-            style={{ textDecoration: "none" }}
-          >
-            <Button variant="contained">
-              {"Official Website ->"}
-            </Button>
-          </Link>
+          <Stack direction="row" alignItems="center" spacing={2}>
+            <Link href="/" style={{ textDecoration: "none" }}>
+              <Button color="secondary">{"PoS Dashboard"}</Button>
+            </Link>
+            <Link href="/incidents" style={{ textDecoration: "none" }}>
+              <Button color="secondary">{"Incidents"}</Button>
+            </Link>
+          </Stack>
         </Stack>
       </Container>
     </Box>

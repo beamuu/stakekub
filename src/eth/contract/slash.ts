@@ -11,7 +11,9 @@ export class SlashManager extends SmartContract {
     for (const event of warns) {
       const e = event as EventLog
       let inner = e.args.toObject()
+      const block = await e.getBlock()
       const rpcEvent:RPCEvent<WarnEvent> = {
+        timestamp: block.timestamp,
         blockNumber: e.blockNumber,
         inner: inner as WarnEvent,
       }
@@ -26,7 +28,9 @@ export class SlashManager extends SmartContract {
     for (const event of warns) {
       const e = event as EventLog
       let inner = e.args.toObject()
+      const block = await e.getBlock()
       const rpcEvent:RPCEvent<WarnEvent> = {
+        timestamp: block.timestamp,
         blockNumber: e.blockNumber,
         inner: inner as WarnEvent,
       }

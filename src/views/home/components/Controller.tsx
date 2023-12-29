@@ -9,7 +9,7 @@ import {
   Typography,
   styled,
 } from "@mui/material";
-import { grey, red } from "@mui/material/colors";
+import { red } from "@mui/material/colors";
 import { useRouter } from "next/router";
 import { FC } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
@@ -20,6 +20,8 @@ interface ControllerProps {
 }
 
 const ControllerIconButton = styled(IconButton)(({ theme }) => ({
+  height: px(40),
+  width: px(40),
   backgroundColor: theme.palette.grey[50],
   borderRadius: px(6),
   color: theme.palette.text.primary,
@@ -29,9 +31,12 @@ const ControllerIconButton = styled(IconButton)(({ theme }) => ({
 }));
 
 const ControllerButton = styled(Button)(({ theme }) => ({
+  paddingLeft: px(16),
+  paddingRight: px(16),
   backgroundColor: theme.palette.grey[50],
   borderRadius: px(6),
   color: theme.palette.text.primary,
+  height: px(40),
   width: "auto",
   "&:hover": {
     backgroundColor: theme.palette.grey[100],

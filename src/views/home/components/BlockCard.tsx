@@ -13,7 +13,8 @@ import { blueGrey, grey } from "@mui/material/colors";
 import Link from "next/link";
 import { FaCheckCircle } from "react-icons/fa";
 import { FC } from "react";
-import { shortenText } from "@/utils/string";
+import { shortenAddress, shortenText } from "@/utils/string";
+import { px } from "@/utils/units";
 
 interface BlockCardProps {
   spanBlock: SpanBlock;
@@ -53,7 +54,7 @@ export const BlockCard: FC<BlockCardProps> = ({
   function getProfileName() {
     return validatorInfo && validatorInfo.profile
       ? validatorInfo.profile.name
-      : spanBlock.validator;
+      : shortenAddress(spanBlock.validator);
   }
   function getStatusColor() {
     if (spanBlock.status.isProposed) {
@@ -109,7 +110,6 @@ export const BlockCard: FC<BlockCardProps> = ({
               whiteSpace="nowrap"
               overflow="hidden"
               textOverflow="ellipsis"
-              maxWidth="60%"
             >
               <img
                 alt="val-profile-img"
@@ -122,7 +122,7 @@ export const BlockCard: FC<BlockCardProps> = ({
               />
               <Box>
                 <Typography fontWeight={500} fontSize={12} color="inherit">
-                  <strong>{shortenText(getProfileName(), 15)}</strong>
+                  <strong>{getProfileName()}</strong>
                 </Typography>
                 <Typography fontSize={12} color="inherit" sx={{ opacity: 0.7 }}>
                   {`#${spanBlock.blockNumber.toLocaleString()}`}

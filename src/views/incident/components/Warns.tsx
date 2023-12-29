@@ -2,6 +2,7 @@ import { blocksPerDay } from "@/constants/chain";
 import { useCoreData } from "@/contexts/core/core";
 import { slashManager } from "@/eth/contract/slash";
 import { IoInformationCircleSharp } from "react-icons/io5";
+import { MdOutlineArrowOutward } from "react-icons/md";
 import {
   Box,
   Button,
@@ -9,6 +10,7 @@ import {
   CardContent,
   Divider,
   FormControl,
+  LinearProgress,
   MenuItem,
   Select,
   SelectChangeEvent,
@@ -21,6 +23,9 @@ import { useSpan } from "@/contexts/span";
 import { unknownProfileImage } from "@/constants/url";
 import { px } from "@/utils/units";
 import { grey } from "@mui/material/colors";
+import { unixToDate } from "@/utils/date";
+import Link from "next/link";
+import { shortenAddress } from "@/utils/string";
 
 type _TfOptions = {
   value: number;
@@ -48,9 +53,21 @@ const timeframeOptions: { [key: string]: _TfOptions } = {
     value: 30,
     display: "30d",
   },
+  "60d": {
+    value: 60,
+    display: "60d",
+  },
+  "90d": {
+    value: 90,
+    display: "90d",
+  },
+  "120d": {
+    value: 120,
+    display: "120d",
+  },
 };
 
-const listExpandSize = 10;
+const listExpandSize = 20;
 const initialDisplaySize = 20;
 
 export const Warns = () => {
@@ -72,11 +89,13 @@ export const Warns = () => {
   }
 
   async function fetch() {
+    setFetched(false);
     const res = await slashManager.warnsBetween(
       currentBlockNumber - blocksPerDay * timeframeOptions[timeframe].value,
       currentBlockNumber
     );
     setWarns(res);
+    setFetched(true);
   }
 
   const handleTimeframeChange = (event: SelectChangeEvent) => {
@@ -86,7 +105,6 @@ export const Warns = () => {
   useEffect(() => {
     if (currentBlockNumber !== 0 && !fetched) {
       fetch();
-      setFetched(true);
     }
   }, [currentBlockNumber]);
 
@@ -103,7 +121,7 @@ export const Warns = () => {
   }, [timeframe]);
 
   return (
-    <Card variant="outlined">
+    <Card>
       <CardContent>
         <Stack
           direction="row"
@@ -116,11 +134,14 @@ export const Warns = () => {
               <Typography fontWeight={500}>Warn events</Typography>
             </Box>
             <Tooltip
-              title="The consensus warns the validators when they miss the block. The validator can be warned once per span."
+              title="The consensus warns the validators when they miss the block. The validator can be warned once per span. Once thry are warned, the official node takes over the rest of the span."
               placement="top"
             >
               <Box>
-                <IoInformationCircleSharp size="23px" color="#00000030" />
+                <IoInformationCircleSharp
+                  size="23px"
+                  style={{ opacity: 0.6 }}
+                />
               </Box>
             </Tooltip>
           </Stack>
@@ -164,7 +185,12 @@ export const Warns = () => {
             justifyContent="space-between"
           >
             <Typography fontSize={12} color="text.disabled">
-              Validator
+              Validator{" "}
+              <b>
+                {fetched && warns.length > 0
+                  ? ` - ${warns.length} events found`
+                  : ""}
+              </b>
             </Typography>
             <Typography fontSize={12} color="text.disabled">
               Span number
@@ -173,78 +199,100 @@ export const Warns = () => {
         </CardContent>
         <Divider />
       </Box>
-      <CardContent>
-        <Stack spacing={2}>
-          {warns.length === 0 ? (
-            <Stack alignItems="center" spacing={2}>
-              <Typography variant="h3">👍🏻</Typography>
-              <Typography variant="body2">
-                All good! No one was warned on this period.
-              </Typography>
-            </Stack>
-          ) : null}
-          {warns.slice(0, currentDisplayItems).map((each, i) => {
-            const v = getValidator(each.inner.signer);
-            const img =
-              v === null || v.profile === null || !v.profile.image
-                ? unknownProfileImage
-                : v.profile.image;
+      {fetched ? (
+        <CardContent>
+          <Stack spacing={2}>
+            {warns.length === 0 ? (
+              <Stack alignItems="center" spacing={2}>
+                <Typography variant="h3">👍🏻</Typography>
+                <Typography variant="body2">
+                  All good! No one was warned on this period.
+                </Typography>
+              </Stack>
+            ) : null}
+            {warns.slice(0, currentDisplayItems).map((each, i) => {
+              const v = getValidator(each.inner.signer);
+              const img =
+                v === null || v.profile === null || !v.profile.image
+                  ? unknownProfileImage
+                  : v.profile.image;
 
-            const displayName =
-              v === null || v.profile === null || !v.profile.name
-                ? each.inner.signer
-                : v.profile.name;
-            const imgSize = 38;
-            return (
-              <Stack
-                key={`warn-${i}`}
-                direction="row"
-                alignItems="center"
-                justifyContent="space-between"
-                spacing={1}
-              >
-                <Stack direction="row" alignItems="center" spacing={1}>
-                  <img
-                    src={img}
-                    width={px(imgSize)}
-                    height={px(imgSize)}
-                    alt="validator-profile-img"
-                    style={{
-                      borderRadius: "4px",
-                    }}
-                  />
+              const displayName =
+                v === null || v.profile === null || !v.profile.name
+                  ? shortenAddress(each.inner.signer)
+                  : v.profile.name;
+              const imgSize = 38;
+              return (
+                <Stack
+                  key={`warn-${i}`}
+                  direction="row"
+                  alignItems="center"
+                  justifyContent="space-between"
+                  spacing={1}
+                >
+                  <Stack direction="row" alignItems="center" spacing={1}>
+                    <img
+                      src={img}
+                      width={px(imgSize)}
+                      height={px(imgSize)}
+                      alt="validator-profile-img"
+                      style={{
+                        borderRadius: "4px",
+                      }}
+                    />
+                    <Box>
+                      <Typography fontSize={14}>{displayName}</Typography>
+                      <Typography fontSize={12} color="text.disabled">
+                        <Typography
+                          component="span"
+                          color="primary.main"
+                          fontSize="inherit"
+                        >
+                          <b>
+                            {"#"}
+                            {each.inner.counter.toLocaleString()}
+                          </b>
+                        </Typography>
+                        {` at ${unixToDate(each.timestamp).toLocaleString()}`}
+                      </Typography>
+                    </Box>
+                  </Stack>
                   <Box>
-                    <Typography fontSize={14}>{displayName}</Typography>
-                    <Typography fontSize={12} color="text.disabled">
-                      {"#"}
-                      {each.inner.counter.toLocaleString()}
-                    </Typography>
+                    <Link href={`/?span_number=${each.inner.span.toString()}`}>
+                      <Button
+                        size="small"
+                        sx={{
+                          gap: 1,
+                        }}
+                      >
+                        {"@"}
+                        {each.inner.span.toLocaleString()}
+                        <MdOutlineArrowOutward size={px(18)} />
+                      </Button>
+                    </Link>
                   </Box>
                 </Stack>
-                <Box>
-                  <Typography>#{each.inner.span.toLocaleString()}</Typography>
-                </Box>
-              </Stack>
-            );
-          })}
-          {currentDisplayItems === warns.length ? null : (
-            <Button
-              color="secondary"
-              onClick={expand}
-              sx={{
-                color: grey[800],
-                backgroundColor: grey[100],
-              }}
-            >
-              Load more{" "}
-              {displaySizeDiff > listExpandSize
-                ? listExpandSize
-                : displaySizeDiff}{" "}
-              items
-            </Button>
-          )}
-        </Stack>
-      </CardContent>
+              );
+            })}
+            {currentDisplayItems === warns.length ? null : (
+              <Button color="secondary" onClick={expand}>
+                Load more{" "}
+                {displaySizeDiff > listExpandSize
+                  ? listExpandSize
+                  : displaySizeDiff}{" "}
+                items
+              </Button>
+            )}
+          </Stack>
+        </CardContent>
+      ) : (
+        <LinearProgress
+          color="secondary"
+          sx={{
+            height: px(2),
+          }}
+        />
+      )}
     </Card>
   );
 };

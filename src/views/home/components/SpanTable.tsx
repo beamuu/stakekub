@@ -23,7 +23,7 @@ export const SpanTable: FC<SpanTableProps> = ({ span, isLive }) => {
         component="div"
         height="auto"
         sx={{
-          backgroundColor: `${grey[100]}d0`,
+          backgroundColor: "grey.50",
           backdropFilter: "blur(3px)",
           zIndex: 39,
           display:
