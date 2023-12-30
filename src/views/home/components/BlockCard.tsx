@@ -28,7 +28,7 @@ const colors = {
     text: "text.primary",
   },
   blockMissed: {
-    bg: "#ff2450",
+    bg: "#52040d",
     text: "#ffffff",
   },
   blockCurrentlyWaiting: {
