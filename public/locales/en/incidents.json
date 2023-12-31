@@ -1,0 +1,6 @@
+{
+  "warn-events-title": "Warn events",
+  "info-warns-found": "{{n}} events found",
+  "info-show-more": "Load more {{n}} items",
+  "info-all-good": "All good! No one was warned on this period."
+}

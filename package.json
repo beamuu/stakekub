@@ -17,9 +17,12 @@
     "axios": "^1.5.1",
     "ethers": "^6.8.0",
     "graphql": "^16.8.1",
+    "i18next": "^23.7.13",
     "next": "13.5.5",
+    "next-i18next": "^15.1.1",
     "react": "^18",
     "react-dom": "^18",
+    "react-i18next": "^14.0.0",
     "react-icons": "^4.11.0"
   },
   "devDependencies": {

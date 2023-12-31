@@ -26,6 +26,8 @@ import { grey } from "@mui/material/colors";
 import { unixToDate } from "@/utils/date";
 import Link from "next/link";
 import { shortenAddress } from "@/utils/string";
+import { useTranslation } from "next-i18next";
+import { AddressTag } from "@/components/AddressTag";
 
 type _TfOptions = {
   value: number;
@@ -71,6 +73,7 @@ const listExpandSize = 20;
 const initialDisplaySize = 20;
 
 export const Warns = () => {
+  const { t } = useTranslation(["common", "incidents"]);
   const { currentBlockNumber } = useCoreData();
   const { getValidator } = useSpan();
   const [fetched, setFetched] = useState<boolean>(false);
@@ -131,7 +134,9 @@ export const Warns = () => {
         >
           <Stack direction="row" alignItems="start" spacing={1}>
             <Box>
-              <Typography fontWeight={500}>Warn events</Typography>
+              <Typography fontWeight={500}>
+                {t("incidents:warn-events-title")}
+              </Typography>
             </Box>
             <Tooltip
               title="The consensus warns the validators when they miss the block. The validator can be warned once per span. Once thry are warned, the official node takes over the rest of the span."
@@ -188,7 +193,7 @@ export const Warns = () => {
               Validator{" "}
               <b>
                 {fetched && warns.length > 0
-                  ? ` - ${warns.length} events found`
+                  ? ` - ${t("incidents:info-warns-found", { n: warns.length })}`
                   : ""}
               </b>
             </Typography>
@@ -200,35 +205,49 @@ export const Warns = () => {
         <Divider />
       </Box>
       {fetched ? (
-        <CardContent>
-          <Stack spacing={2}>
-            {warns.length === 0 ? (
-              <Stack alignItems="center" spacing={2}>
-                <Typography variant="h3">👍🏻</Typography>
-                <Typography variant="body2">
-                  All good! No one was warned on this period.
-                </Typography>
-              </Stack>
-            ) : null}
-            {warns.slice(0, currentDisplayItems).map((each, i) => {
-              const v = getValidator(each.inner.signer);
-              const img =
-                v === null || v.profile === null || !v.profile.image
-                  ? unknownProfileImage
-                  : v.profile.image;
+        <Stack>
+          {warns.length === 0 ? (
+            <Stack alignItems="center" spacing={2}>
+              <Typography variant="h3">👍🏻</Typography>
+              <Typography variant="body2">
+                {t("incidents:info-all-good")}
+              </Typography>
+            </Stack>
+          ) : null}
+          {warns.slice(0, currentDisplayItems).map((each, i) => {
+            const v = getValidator(each.inner.signer);
+            const img =
+              v === null || v.profile === null || !v.profile.image
+                ? unknownProfileImage
+                : v.profile.image;
 
-              const displayName =
-                v === null || v.profile === null || !v.profile.name
-                  ? shortenAddress(each.inner.signer)
-                  : v.profile.name;
-              const imgSize = 38;
-              return (
+            const displayName =
+              v === null || v.profile === null || !v.profile.name
+                ? shortenAddress(each.inner.signer)
+                : v.profile.name;
+            const imgSize = 38;
+            return (
+              <Link
+                href={`/?span_number=${each.inner.span.toString()}`}
+                key={`warn-${i}`}
+                style={{
+                  textDecoration: "none",
+                  color: "inherit",
+                }}
+              >
                 <Stack
-                  key={`warn-${i}`}
                   direction="row"
                   alignItems="center"
                   justifyContent="space-between"
                   spacing={1}
+                  sx={{
+                    px: 2,
+                    py: 2,
+                    transition: "300ms ease",
+                    "&:hover": {
+                      backgroundColor: "grey.50",
+                    },
+                  }}
                 >
                   <Stack direction="row" alignItems="center" spacing={1}>
                     <img
@@ -241,7 +260,9 @@ export const Warns = () => {
                       }}
                     />
                     <Box>
-                      <Typography fontSize={14}>{displayName}</Typography>
+                      <Typography fontSize={14}>
+                        <AddressTag>{each.inner.signer}</AddressTag>
+                      </Typography>
                       <Typography fontSize={12} color="text.disabled">
                         <Typography
                           component="span"
@@ -253,38 +274,36 @@ export const Warns = () => {
                             {each.inner.counter.toLocaleString()}
                           </b>
                         </Typography>
-                        {` at ${unixToDate(each.timestamp).toLocaleString()}`}
+                        {` ${t("at")} ${unixToDate(
+                          each.timestamp
+                        ).toLocaleString()}`}
+                        {" • "}
+                        {"@"}
+                        {each.inner.span.toLocaleString()}
                       </Typography>
                     </Box>
                   </Stack>
-                  <Box>
-                    <Link href={`/?span_number=${each.inner.span.toString()}`}>
-                      <Button
-                        size="small"
-                        sx={{
-                          gap: 1,
-                        }}
-                      >
-                        {"@"}
-                        {each.inner.span.toLocaleString()}
-                        <MdOutlineArrowOutward size={px(18)} />
-                      </Button>
-                    </Link>
-                  </Box>
+
+                  <MdOutlineArrowOutward
+                    size={px(18)}
+                    color="inherit"
+                    style={{ opacity: 0.6 }}
+                  />
                 </Stack>
-              );
-            })}
-            {currentDisplayItems === warns.length ? null : (
-              <Button color="secondary" onClick={expand}>
-                Load more{" "}
-                {displaySizeDiff > listExpandSize
-                  ? listExpandSize
-                  : displaySizeDiff}{" "}
-                items
-              </Button>
-            )}
-          </Stack>
-        </CardContent>
+              </Link>
+            );
+          })}
+          {currentDisplayItems === warns.length ? null : (
+            <Button color="secondary" onClick={expand}>
+              {t("incidents:info-show-more", {
+                n:
+                  displaySizeDiff > listExpandSize
+                    ? listExpandSize
+                    : displaySizeDiff,
+              })}
+            </Button>
+          )}
+        </Stack>
       ) : (
         <LinearProgress
           color="secondary"

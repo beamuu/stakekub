@@ -9,7 +9,7 @@ export const IncidentPage: FC = () => {
       minHeight: "96vh",
     }}>
       <Grid container>
-        <Grid xs={12} sm={12} md={6}>
+        <Grid item xs={12} sm={12} md={6}>
           <Warns />
         </Grid>
       </Grid>

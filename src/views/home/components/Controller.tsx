@@ -12,6 +12,7 @@ import {
 import { red } from "@mui/material/colors";
 import { useRouter } from "next/router";
 import { FC } from "react";
+import { useTranslation } from "next-i18next";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { MdFiberManualRecord } from "react-icons/md";
 
@@ -46,6 +47,10 @@ const ControllerButton = styled(Button)(({ theme }) => ({
 export const Controller: FC<ControllerProps> = ({ showingSpanNumber }) => {
   const { push } = useRouter();
   const { currentSpan } = useSpan();
+  const { t, i18n } = useTranslation("common");
+  const { locale } = useRouter()
+  console.log(locale, i18n.languages)
+  console.log(t("showing"))
 
   const getRoutePath = (span: bigint) => {
     return `/?span_number=${span}`;
@@ -82,7 +87,7 @@ export const Controller: FC<ControllerProps> = ({ showingSpanNumber }) => {
         </Tooltip>
         <Tooltip title="Jump to current span" placement="top">
           <ControllerButton size="small" onClick={onSubscribeLiveEvent}>
-            Live
+            {t("Live")}
             <MdFiberManualRecord
               size={px(16)}
               style={{
@@ -95,7 +100,7 @@ export const Controller: FC<ControllerProps> = ({ showingSpanNumber }) => {
       </Stack>
       <Box>
         <Typography variant="body2" color="text.escondary">
-          Showing{" "}
+          {t("Showing")}{" "}
           <strong
             style={{ textDecoration: "underline" }}
           >{`@${showingSpanNumber.toLocaleString()}`}</strong>

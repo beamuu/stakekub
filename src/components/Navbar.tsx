@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import Link from "next/link";
 import { FC } from "react";
+import { useTranslation } from "next-i18next";
 
 interface NavbarProps {
   containerSize?: Breakpoint;
@@ -17,17 +18,19 @@ interface NavbarProps {
 export const navbarHeight = 60;
 
 export const Navbar: FC<NavbarProps> = (props) => {
+  const { t } = useTranslation("navbar");
   return (
     <Box
       sx={{
         position: "sticky",
         top: 0,
         width: "100vw",
-        backgroundColor: "background.default",
+        backgroundColor: "background.paper",
         zIndex: 999,
-        borderWidth: "0 0 1px 0",
-        borderColor: "divider",
-        borderStyle: "solid",
+        boxShadow: "0px 5px 20px 2px #000000e0"
+        // borderWidth: "0 0 1px 0",
+        // borderColor: "divider",
+        // borderStyle: "solid",
       }}
     >
       <Container maxWidth={props.containerSize || "xl"}>
@@ -39,20 +42,26 @@ export const Navbar: FC<NavbarProps> = (props) => {
         >
           <Box>
             <Typography
-              letterSpacing="-0.03em"
-              variant="h6"
-              fontWeight={700}
+              letterSpacing="6px"
+              fontWeight={400}
               color="text.primary"
             >
-              Stakekub
+              STAKE
+              <Typography
+                component="span"
+                color="primary.main"
+                fontWeight={600}
+              >
+                KUB
+              </Typography>
             </Typography>
           </Box>
           <Stack direction="row" alignItems="center" spacing={2}>
             <Link href="/" style={{ textDecoration: "none" }}>
-              <Button color="secondary">{"PoS Dashboard"}</Button>
+              <Button color="secondary">{t("menu-pos-dashboard")}</Button>
             </Link>
             <Link href="/incidents" style={{ textDecoration: "none" }}>
-              <Button color="secondary">{"Incidents"}</Button>
+              <Button color="secondary">{t("menu-incedents")}</Button>
             </Link>
           </Stack>
         </Stack>

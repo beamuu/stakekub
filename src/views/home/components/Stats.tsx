@@ -7,6 +7,7 @@ import LinearProgress, {
 } from "@mui/material/LinearProgress";
 import { grey } from "@mui/material/colors";
 import { FC } from "react";
+import { useTranslation } from "next-i18next";
 import { GiPerspectiveDiceSixFacesRandom } from "react-icons/gi";
 
 interface StatsProps {
@@ -16,7 +17,7 @@ interface StatsProps {
 
 export const Stats: FC<StatsProps> = ({ span, spanNumber }) => {
   const { getValidator } = useSpan();
-
+  const { t } = useTranslation();
   function count(s: Span) {
     const m: { [key: string]: number } = {};
     for (const each of s) {
@@ -46,11 +47,10 @@ export const Stats: FC<StatsProps> = ({ span, spanNumber }) => {
       <Stack direction="row" justifyContent="space-between">
         <Box mb={4} pr={3}>
           <Typography variant="h6">
-            Randomization {`@${spanNumber.toLocaleString()}`}
+            {t("Randomization")} {`@${spanNumber.toLocaleString()}`}
           </Typography>
           <Typography variant="body2" color="text.secondary" fontSize={12}>
-            This show how Proof-of-Stake consensus randoms validators in each
-            span.
+            {t("def-randomization")}
           </Typography>
         </Box>
         <Box>

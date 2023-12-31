@@ -11,7 +11,8 @@ export const Footer = () => {
       borderStyle: "solid",
       py: 4
     }}>
-      <Typography>Source code at <Link href="https://github.com/beamuu/stakekub">github.com</Link></Typography>
+      <Typography color="text.disabled">Source code at <Link href="https://github.com/beamuu/stakekub">github.com</Link></Typography>
+      <Typography color="text.disabled" fontSize={12}>Not an ofiicial project</Typography>
     </Container>
   )
 }
